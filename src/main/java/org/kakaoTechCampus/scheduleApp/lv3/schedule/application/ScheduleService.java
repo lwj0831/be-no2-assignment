@@ -12,6 +12,7 @@ import org.kakaoTechCampus.scheduleApp.lv3.user.domain.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -35,8 +36,8 @@ public class ScheduleService {
                 .orElseThrow(()->new NotFoundException(ErrorCode.NOT_FOUND));
     }
 
-    public List<GetScheduleResDto> findAllByWriterNameAndUpdatedAt(GetScheduleListReqDto dto) {
-        return scheduleRepository.findAllByWriterNameAndUpdatedAt(dto.writerName(), dto.updatedAt())
+    public List<GetScheduleResDto> findAllByWriterNameAndUpdatedAt(String writerName, LocalDateTime updatedAt) {
+        return scheduleRepository.findAllByWriterNameAndUpdatedAt(writerName, updatedAt)
                 .stream()
                 .map(GetScheduleResDto::new)
                 .toList();

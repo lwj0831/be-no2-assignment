@@ -3,10 +3,10 @@ package org.kakaoTechCampus.scheduleApp.lv1.ui;
 import lombok.RequiredArgsConstructor;
 import org.kakaoTechCampus.scheduleApp.lv1.application.ScheduleService;
 import org.kakaoTechCampus.scheduleApp.lv1.application.dto.CreateScheduleReqDto;
-import org.kakaoTechCampus.scheduleApp.lv1.application.dto.GetScheduleListReqDto;
 import org.kakaoTechCampus.scheduleApp.lv1.application.dto.GetScheduleResDto;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -26,8 +26,8 @@ public class ScheduleController {
     }
 
     @GetMapping
-    public List<GetScheduleResDto> findScheduleList(@RequestBody GetScheduleListReqDto dto) {
-        return scheduleService.findAllByWriterNameAndUpdatedAt(dto);
+    public List<GetScheduleResDto> findScheduleList(@RequestParam String writerName, @RequestParam LocalDateTime updatedAt) {
+        return scheduleService.findAllByWriterNameAndUpdatedAt(writerName, updatedAt);
     }
 
 }

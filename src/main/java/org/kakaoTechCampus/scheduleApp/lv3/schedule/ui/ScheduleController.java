@@ -4,13 +4,13 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.kakaoTechCampus.scheduleApp.lv3.common.ui.Response;
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.ScheduleService;
-import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.dto.GetScheduleResDto;
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.dto.CreateScheduleReqDto;
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.dto.DeleteScheduleReqDto;
-import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.dto.GetScheduleListReqDto;
+import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.dto.GetScheduleResDto;
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.dto.UpdateScheduleReqDto;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -22,7 +22,7 @@ public class ScheduleController {
     @PostMapping("/create")
     public Response<Long> createSchedule(@Valid @RequestBody CreateScheduleReqDto dto) {
         Long id = scheduleService.save(dto);
-        return Response.ok(id,"create schedule successc");
+        return Response.ok(id,"create schedule success");
     }
 
     @GetMapping("/{id}")
@@ -32,8 +32,8 @@ public class ScheduleController {
     }
 
     @GetMapping
-    public Response<List<GetScheduleResDto>> findScheduleList(@Valid @RequestBody GetScheduleListReqDto dto) {
-        List<GetScheduleResDto> dtoList = scheduleService.findAllByWriterNameAndUpdatedAt(dto);
+    public Response<List<GetScheduleResDto>> findScheduleList(@RequestParam String writerName, @RequestParam LocalDateTime updatedAt) {
+        List<GetScheduleResDto> dtoList = scheduleService.findAllByWriterNameAndUpdatedAt(writerName, updatedAt);
         return Response.ok(dtoList, "find schedule list success");
     }
 

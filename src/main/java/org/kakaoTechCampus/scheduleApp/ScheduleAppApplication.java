@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableJpaAuditing
-@ComponentScan(basePackages = {"org.kakaoTechCampus.scheduleApp.lv2"})
+@ComponentScan(basePackages = {"org.kakaoTechCampus.scheduleApp.lv3"})
 public class ScheduleAppApplication {
 
 	public static void main(String[] args) {

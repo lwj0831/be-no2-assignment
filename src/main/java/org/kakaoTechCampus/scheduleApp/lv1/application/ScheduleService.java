@@ -2,12 +2,12 @@ package org.kakaoTechCampus.scheduleApp.lv1.application;
 
 import lombok.RequiredArgsConstructor;
 import org.kakaoTechCampus.scheduleApp.lv1.application.dto.CreateScheduleReqDto;
-import org.kakaoTechCampus.scheduleApp.lv1.application.dto.GetScheduleListReqDto;
 import org.kakaoTechCampus.scheduleApp.lv1.application.dto.GetScheduleResDto;
 import org.kakaoTechCampus.scheduleApp.lv1.application.interfaces.ScheduleRepository;
 import org.kakaoTechCampus.scheduleApp.lv1.domain.Schedule;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,8 +26,8 @@ public class ScheduleService {
                 .orElseThrow(()->new IllegalArgumentException("일정이 존재하지 않습니다."));
     }
 
-    public List<GetScheduleResDto> findAllByWriterNameAndUpdatedAt(GetScheduleListReqDto dto) {
-        return scheduleRepository.findAllByWriterNameAndUpdatedAt(dto.writerName(), dto.updatedAt())
+    public List<GetScheduleResDto> findAllByWriterNameAndUpdatedAt(String writerName, LocalDateTime updatedAt) {
+        return scheduleRepository.findAllByWriterNameAndUpdatedAt(writerName, updatedAt)
                 .stream()
                 .map(GetScheduleResDto::new)
                 .toList();

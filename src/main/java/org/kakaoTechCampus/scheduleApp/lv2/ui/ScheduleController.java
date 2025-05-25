@@ -5,6 +5,7 @@ import org.kakaoTechCampus.scheduleApp.lv2.application.ScheduleService;
 import org.kakaoTechCampus.scheduleApp.lv2.application.dto.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -24,8 +25,8 @@ public class ScheduleController {
     }
 
     @GetMapping
-    public List<GetScheduleResDto> findScheduleList(@RequestBody GetScheduleListReqDto dto) {
-        return scheduleService.findAllByWriterNameAndUpdatedAt(dto);
+    public List<GetScheduleResDto> findScheduleList(@RequestParam String writerName, @RequestParam LocalDateTime updatedAt) {
+        return scheduleService.findAllByWriterNameAndUpdatedAt(writerName, updatedAt);
     }
 
     @PutMapping("{id}")
