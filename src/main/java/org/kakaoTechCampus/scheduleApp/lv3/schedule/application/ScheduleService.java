@@ -9,6 +9,10 @@ import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.interfaces.Sched
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.domain.Schedule;
 import org.kakaoTechCampus.scheduleApp.lv3.user.application.interfaces.UserRepository;
 import org.kakaoTechCampus.scheduleApp.lv3.user.domain.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,11 +40,10 @@ public class ScheduleService {
                 .orElseThrow(()->new NotFoundException(ErrorCode.NOT_FOUND));
     }
 
-    public List<GetScheduleResDto> findAllByWriterNameAndUpdatedAt(String writerName, LocalDateTime updatedAt) {
-        return scheduleRepository.findAllByWriterNameAndUpdatedAt(writerName, updatedAt)
-                .stream()
-                .map(GetScheduleResDto::new)
-                .toList();
+    public Page<GetScheduleResDto> findAllByWriterNameAndUpdatedAt(String writerName, LocalDateTime updatedAt, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("updDt").descending());
+        return scheduleRepository.findAllByWriterNameAndUpdatedAt(writerName, updatedAt, pageable)
+                .map(GetScheduleResDto::new);
     }
 
     @Transactional

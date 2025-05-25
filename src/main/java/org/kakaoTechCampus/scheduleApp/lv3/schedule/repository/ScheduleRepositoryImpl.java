@@ -10,6 +10,9 @@ import org.kakaoTechCampus.scheduleApp.lv3.schedule.repository.entity.ScheduleEn
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.repository.jpa.JpaScheduleRepository;
 import org.kakaoTechCampus.scheduleApp.lv3.user.repository.entity.UserEntity;
 import org.kakaoTechCampus.scheduleApp.lv3.user.repository.jpa.JpaUserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -48,9 +51,8 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
     }
 
     @Override
-    public List<Schedule> findAllByWriterNameAndUpdatedAt(String writerName, LocalDateTime updatedAt) {
-        //동적 쿼리문 필요한 api 하나여서 queryDSL 도입하는 것은 오버 엔지니어링이라 판단하여 JpaSpecificationExecutor 사용
-        List<ScheduleEntity> scheduleEntities = jpaScheduleRepository.findAll((root, query, cb) -> {
+    public Page<Schedule> findAllByWriterNameAndUpdatedAt(String writerName, LocalDateTime updatedAt, Pageable pageable) {
+        Specification<ScheduleEntity> spec = (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 
             if (writerName != null && !writerName.isBlank()) {
@@ -60,9 +62,12 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
             if (updatedAt != null) {
                 predicates.add(cb.equal(cb.function("DATE", LocalDate.class, root.get("updDt")), updatedAt.toLocalDate()));
             }
+
             return cb.and(predicates.toArray(new Predicate[0]));
-        });
-        return scheduleEntities.stream().map(Schedule::toSchedule).toList();
+        };
+
+        return jpaScheduleRepository.findAll(spec, pageable)
+                .map(Schedule::toSchedule);
     }
 
     @Override

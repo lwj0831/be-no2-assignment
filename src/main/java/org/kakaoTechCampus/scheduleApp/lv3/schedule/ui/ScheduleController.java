@@ -8,6 +8,7 @@ import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.dto.CreateSchedu
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.dto.DeleteScheduleReqDto;
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.dto.GetScheduleResDto;
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.dto.UpdateScheduleReqDto;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -32,9 +33,14 @@ public class ScheduleController {
     }
 
     @GetMapping
-    public Response<List<GetScheduleResDto>> findScheduleList(@RequestParam String writerName, @RequestParam LocalDateTime updatedAt) {
-        List<GetScheduleResDto> dtoList = scheduleService.findAllByWriterNameAndUpdatedAt(writerName, updatedAt);
-        return Response.ok(dtoList, "find schedule list success");
+    public Response<Page<GetScheduleResDto>> findScheduleList(
+            @RequestParam String writerName,
+            @RequestParam LocalDateTime updatedAt,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Page<GetScheduleResDto> dtoPage = scheduleService.findAllByWriterNameAndUpdatedAt(writerName, updatedAt, page, size);
+        return Response.ok(dtoPage, "find schedule list success");
     }
 
     @PutMapping("{id}")
