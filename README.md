@@ -52,37 +52,127 @@
 
 ### 📋 전체 일정 조회
 
-- **URL**: `GET /api/v1.2.0/schedules?writerName=kim&updatedAt=2025-05-25T00:00:00`
+- **URL**: `GET /api/v1.2.0/schedules`
+  예시: `/api/v1.2.0/schedules?writerName=kim&updatedAt=2025-05-25T00:00:00&page=0&size=103`
 - **Response Body**:
 ```json
 {
   "code": 0,
   "message": "find schedule list success",
   "value": [
-    {
-      "id": 3,
-      "title": "schedule1",
-      "content": "final Exam",
-      "writerName": "kim",
-      "createdAt": "2025-05-25T22:20:00.273638",
-      "updatedAt": "2025-05-25T22:20:00.273638"
-    },
-    {
-      "id": 4,
-      "title": "schedule1",
-      "content": "final Exam",
-      "writerName": "kim",
-      "createdAt": "2025-05-25T22:20:11.073879",
-      "updatedAt": "2025-05-25T22:20:11.073879"
-    },
-    {
-      "id": 5,
-      "title": "schedule1",
-      "content": "final Exam",
-      "writerName": "kim",
-      "createdAt": "2025-05-25T22:20:12.812968",
-      "updatedAt": "2025-05-25T22:20:12.812968"
+   {
+    "code": 0,
+    "message": "find schedule list success",
+    "value": {
+        "content": [
+            {
+                "id": 20,
+                "title": "schedule1",
+                "content": "final Exam",
+                "writerName": "kim",
+                "createdAt": "2025-05-26T00:06:26.633852",
+                "updatedAt": "2025-05-26T00:06:26.633852"
+            },
+            {
+                "id": 19,
+                "title": "schedule1",
+                "content": "final Exam",
+                "writerName": "kim",
+                "createdAt": "2025-05-26T00:06:25.807634",
+                "updatedAt": "2025-05-26T00:06:25.807634"
+            },
+            {
+                "id": 18,
+                "title": "schedule1",
+                "content": "final Exam",
+                "writerName": "kim",
+                "createdAt": "2025-05-26T00:06:25.065996",
+                "updatedAt": "2025-05-26T00:06:25.065996"
+            },
+            {
+                "id": 17,
+                "title": "schedule1",
+                "content": "final Exam",
+                "writerName": "kim",
+                "createdAt": "2025-05-26T00:06:24.205559",
+                "updatedAt": "2025-05-26T00:06:24.205559"
+            },
+            {
+                "id": 16,
+                "title": "schedule1",
+                "content": "final Exam",
+                "writerName": "kim",
+                "createdAt": "2025-05-26T00:02:54.719007",
+                "updatedAt": "2025-05-26T00:02:54.719007"
+            },
+            {
+                "id": 15,
+                "title": "schedule1",
+                "content": "final Exam",
+                "writerName": "kim",
+                "createdAt": "2025-05-26T00:02:53.528996",
+                "updatedAt": "2025-05-26T00:02:53.528996"
+            },
+            {
+                "id": 14,
+                "title": "schedule1",
+                "content": "final Exam",
+                "writerName": "kim",
+                "createdAt": "2025-05-26T00:02:52.535771",
+                "updatedAt": "2025-05-26T00:02:52.535771"
+            },
+            {
+                "id": 13,
+                "title": "schedule1",
+                "content": "final Exam",
+                "writerName": "kim",
+                "createdAt": "2025-05-26T00:02:43.589726",
+                "updatedAt": "2025-05-26T00:02:43.589726"
+            },
+            {
+                "id": 12,
+                "title": "schedule1",
+                "content": "final Exam",
+                "writerName": "kim",
+                "createdAt": "2025-05-26T00:02:42.666393",
+                "updatedAt": "2025-05-26T00:02:42.666393"
+            },
+            {
+                "id": 11,
+                "title": "schedule1",
+                "content": "final Exam",
+                "writerName": "kim",
+                "createdAt": "2025-05-26T00:02:41.739429",
+                "updatedAt": "2025-05-26T00:02:41.739429"
+            }
+        ],
+        "pageable": {
+            "pageNumber": 0,
+            "pageSize": 10,
+            "sort": {
+                "empty": false,
+                "unsorted": false,
+                "sorted": true
+            },
+            "offset": 0,
+            "unpaged": false,
+            "paged": true
+        },
+        "last": false,
+        "totalPages": 2,
+        "totalElements": 15,
+        "first": true,
+        "numberOfElements": 10,
+        "size": 10,
+        "number": 0,
+        "sort": {
+            "empty": false,
+            "unsorted": false,
+            "sorted": true
+        },
+        "empty": false
     }
+}
   ]
 }
 ```
