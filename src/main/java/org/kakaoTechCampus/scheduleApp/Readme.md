@@ -170,3 +170,8 @@
   "writerName":"lwjddd22222"
 }
 ```
+
+# 💡 ERD Diagram
+![image](https://github.com/user-attachments/assets/126ceaf1-34e1-47f4-8d2a-1bfaa46d17b0)
+
+
