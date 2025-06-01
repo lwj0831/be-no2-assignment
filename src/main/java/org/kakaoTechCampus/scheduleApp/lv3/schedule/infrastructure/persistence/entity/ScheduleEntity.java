@@ -45,4 +45,8 @@ public class ScheduleEntity extends TimeBaseEntity {
         this.user = userEntity;
     }
 
+    public boolean checkPassword(String password) {
+        return this.password.equals(password);
+    }
+
 }

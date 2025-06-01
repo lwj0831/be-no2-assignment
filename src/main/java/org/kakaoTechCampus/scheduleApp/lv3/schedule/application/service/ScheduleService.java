@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.kakaoTechCampus.scheduleApp.lv3.common.exception.ErrorCode;
 import org.kakaoTechCampus.scheduleApp.lv3.common.exception.NotFoundException;
 import org.kakaoTechCampus.scheduleApp.lv3.common.exception.PasswordMismatchException;
-import org.kakaoTechCampus.scheduleApp.lv3.schedule.application.dto.*;
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.domain.repository.ScheduleRepository;
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.domain.model.Schedule;
 import org.kakaoTechCampus.scheduleApp.lv3.schedule.presentation.dto.CreateScheduleReqDto;
