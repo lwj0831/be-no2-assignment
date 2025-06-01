@@ -1,6 +1,6 @@
 package org.kakaoTechCampus.scheduleApp.lv2.repository;
 
-import org.kakaoTechCampus.scheduleApp.lv2.application.interfaces.ScheduleRepository;
+import org.kakaoTechCampus.scheduleApp.lv2.repository.interfaces.ScheduleRepository;
 import org.kakaoTechCampus.scheduleApp.lv2.domain.Schedule;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
