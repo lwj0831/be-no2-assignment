@@ -53,7 +53,7 @@
 ### 📋 전체 일정 조회
 
 - **URL**: `GET /api/v1.2.0/schedules`  
-  예시: `/api/v1.2.0/schedules?writerName=kim&updatedAt=2025-05-25T00:00:00&page=0&size=10`
+  예시: `/api/v1.2.0/schedules?writerId=1&updatedAt=2025-05-25T00:00:00&page=0&size=10`
 - **Response Body**:
 ```json
 {
