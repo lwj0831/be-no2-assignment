@@ -6,7 +6,6 @@ import org.kakaoTechCampus.scheduleApp.lv2.dto.DeleteScheduleReqDto;
 import org.kakaoTechCampus.scheduleApp.lv2.dto.GetScheduleResDto;
 import org.kakaoTechCampus.scheduleApp.lv2.dto.UpdateScheduleReqDto;
 import org.kakaoTechCampus.scheduleApp.lv2.service.ScheduleService;
-import org.kakaoTechCampus.scheduleApp.lv2.service.dto.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;

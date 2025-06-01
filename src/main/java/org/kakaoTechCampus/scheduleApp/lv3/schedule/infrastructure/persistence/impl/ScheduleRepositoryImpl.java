@@ -45,7 +45,7 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
 
     @Override
     public Optional<Schedule> findById(Long id) {
-        Optional<ScheduleEntity> scheduleEntity = jpaScheduleRepository.findById(id);
+        Optional<ScheduleEntity> scheduleEntity = jpaScheduleRepository.findByIdWithUser(id);
         return scheduleEntity.map(Schedule::toSchedule);
     }
 
@@ -71,10 +71,11 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
 
     @Override
     public void updateSchedule(Long id, String content, Long newUserId, String password) {
-        ScheduleEntity scheduleEntity = jpaScheduleRepository.findById(id)
+        ScheduleEntity scheduleEntity = jpaScheduleRepository.findByIdWithUser(id)
                 .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND));
-        UserEntity userEntity = jpaUserRepository.findById(newUserId)
-                .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_FOUND));
+        UserEntity userEntity = scheduleEntity.getUser();
+        if(userEntity==null) throw new NotFoundException(ErrorCode.NOT_FOUND);
+
         scheduleEntity.updateUser(userEntity);
         //password 비교를 위해 dirtyChecking 방식이 아닌 직접 쿼리문 사용하는 방식 채택
         jpaScheduleRepository.updateSchedule(id, content, password);
